@@ -1,18 +1,18 @@
-# Market Ads Attribution Microservice
+# Microservicio Market Ads Attribution 
 
-## 🚀 Overview
+## 🚀 Resumen
 
-A Python/FastAPI microservice designed for digital advertising campaign attribution. Captures clicks from Meta Ads campaigns, validates and normalizes tracking parameters using configurable MongoDB templates, registers click events for traceability, and orchestrates intelligent redirection to WhatsApp Business.
+Microservicio desarrollado en Python/FastApi especificamente para poder ser parte de la campaña de publicidad llamada atrribution. Captura los clics que vienen desde las campañas de Meta Ads, valida y normaliza los parametros de trackeo usando plantillas de MongoDB configurables, luego registra eventos clics para su trazabilidad para finalmente redirigir al usuario al chatbot de WhatsApp. 
 
 ## 🛠️ Tech Stack
 
 - **Backend**: Python 3.11, FastAPI
-- **Database**: MongoDB (templates), Redis (session storage)
-- **Documentation**: Swagger/OpenAPI
-- **Containerization**: Docker, Docker Compose
-- **Architecture**: Modular microservice following enterprise standards
+- **Base de datos**: MongoDB (templates), Redis (session storage)
+- **Documentación**: Swagger/OpenAPI
+- **Container**: Docker, Docker Compose
+- **Arquitectura**: Microservicio modular siguiendo los lineamientos de la empresa
 
-## 🏗️ Architecture
+## 🏗️ Arquitectura
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
@@ -29,13 +29,13 @@ A Python/FastAPI microservice designed for digital advertising campaign attribut
 
 ## 📋 Features
 
-- **Campaign Attribution**: Captures fbclid, campaign_id, adset_id, ad_id from Meta Ads
-- **Dynamic Validation**: Configurable parameter validation using MongoDB templates
-- **Session Management**: Registers click events for precise ROI tracking
-- **Smart Redirection**: Clean WhatsApp Business integration
-- **API Documentation**: Complete Swagger/OpenAPI documentation
-- **Error Handling**: Robust error management with fallback mechanisms
-- **Docker Ready**: Multi-environment Docker configuration
+- **Campaign Attribution**: Captura fbclid, campaign_id, adset_id, ad_id de Meta Ads
+- **Dynamic Validation**: Parametro de validacion configurable usando plantillas de MongoDB
+- **Session Management**: Registra eventos clics para trackeo ROI de forma precisa
+- **Smart Redirection**: Integracion a WhatsApp Business
+- **API Documentation**: Documentacion completa en Swagger/OpenAPI
+- **Error Handling**: Manejo de errores con mecanicas fallback
+- **Docker Ready**: Configuracion multi-environment en Docker 
 
 ## 🚦 Quick Start
 
@@ -44,26 +44,26 @@ A Python/FastAPI microservice designed for digital advertising campaign attribut
 - MongoDB
 - Redis (or session storage service)
 
-### Installation
+### Instalacion
 
-1. **Clone the repository**
+1. **Clonar el repository**
 ```bash
 git clone https://github.com/Jfede98/market-ads-attribution-msa.git
 cd market-ads-attribution-msa
 ```
 
-2. **Install dependencies**
+2. **Instalar dependencias**
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Configure environment**
+3. **Configurar ambiente**
 ```bash
 cp .env.example .env
-# Edit .env with your configuration
+# Edita .env con tu configuracion
 ```
 
-4. **Run the service**
+4. **Corre el servicio**
 ```bash
 python -m app.main
 ```
@@ -71,24 +71,24 @@ python -m app.main
 ### Docker Deployment
 
 ```bash
-# Development
+# Dev
 docker build -f setup/dockerfile/dockerfile_dev -t market-ads-attribution-msa .
 
-# Production
+# Produccion
 docker build -f setup/dockerfile/dockerfile_prod -t market-ads-attribution-msa .
 
-# Run with Docker Compose
+# Corre con Docker Compose
 docker-compose up -d
 ```
 
-## 📖 API Documentation
+## 📖 Documentacion de API
 
-Once running, access the interactive API documentation:
+Una vez que este corriendo, acceder a la documentacion interactiva del API:
 
 - **Swagger UI**: `http://localhost:2217/market-ads-attribution-api/v1/ui`
 - **ReDoc**: `http://localhost:2217/market-ads-attribution-api/v1/redoc`
 
-## 🔗 Example Usage
+## 🔗 Ejemplo de Uso
 
 ### Health Check
 ```bash
@@ -104,7 +104,7 @@ http://localhost:2217/market-ads-attribution-api/v1/w/redirect?fbclid=IwAR123456
 http://localhost:2217/market-ads-attribution-api/v1/w/redirect?fbclid=IwAR1234567890&campaign_id=1234&adset_id=5678&ad_id=9012&utm_source=facebook&utm_medium=cpc
 ```
 
-## 📁 Project Structure
+## 📁 Estructura del Proyecto 
 
 ```
 market-ads-attribution-msa/
@@ -122,30 +122,30 @@ market-ads-attribution-msa/
 └── README.md
 ```
 
-## 🔧 Configuration
+## 🔧 Configuracion
 
 Key environment variables:
 
-| Variable | Description | Example |
+| Variable | Descripcion | Ejemplo |
 |----------|-------------|---------|
 | `PORT` | Server port | `2217` |
 | `CACHING_SERVICE_URL` | Session service URL | `https://api.example.com/v1` |
 | `WHATSAPP_NUMBER` | Business WhatsApp number | `1234567890` |
 | `MONGODB_URL` | MongoDB connection string | `mongodb://user:pass@host:port/db` |
 
-## 🎯 Business Value
+## 🎯 Valor de Negocio
 
-- **ROI Tracking**: Precise campaign attribution for marketing optimization
-- **Lead Conversion**: Seamless user journey from ad click to WhatsApp engagement
-- **Scalability**: Microservice architecture ready for multi-platform expansion
-- **Maintainability**: Clean code following enterprise standards
+- **ROI Tracking**: Servicio de attribution para optimizacion de campaña de marketing
+- **Conversion de Leads**: Journey de usuario desde el clic a un ad hasta el contacto por WhatsApp de forma organica
+- **Escalabilidad**: Arquitectura del microservicio lista para expansion multiplataforma
+- **Mantenibilidad**: Codigo limpio siguiendo estadares empresariales
 
-## 🚀 Future Enhancements
+## 🚀 Futuras Mejoras
 
-- Google Ads integration
-- TikTok Ads support
-- Advanced analytics dashboard
-- A/B testing capabilities
+- Integracion con Google Ads
+- Soporte de TikTok Ads
+- Dashboard para analitica
+- Capacidad de testing A/B
 
 ---
 
