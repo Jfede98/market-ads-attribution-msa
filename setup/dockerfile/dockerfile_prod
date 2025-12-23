@@ -1,0 +1,40 @@
+# Dockerfile for market-ads-attribution-msa
+# Following XTRIM 2.0 standards - POL-ARQ-2025-002
+
+FROM python:3.12-slim-bookworm
+
+# Set timezone
+ENV TZ=America/Guayaquil
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Set Python path to find the app module
+ENV PYTHONPATH=/usr/src/app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt /usr/src/app/
+
+# Install Python dependencies
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Create logs directory
+RUN mkdir -p /usr/src/app/logs
+
+# Copy application code
+COPY . /usr/src/app
+
+# Expose port
+EXPOSE 2217
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:2217/health')"
+
+# Run with gunicorn for production
+CMD ["gunicorn", "--workers=4", "--bind", "0.0.0.0:2217", "--worker-class=uvicorn.workers.UvicornWorker", "--timeout=120", "app.main:app"]

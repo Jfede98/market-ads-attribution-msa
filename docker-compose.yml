@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  attribution-redirect:
+    build:
+      context: .
+      dockerfile: setup/dockerfile/dockerfile_dev
+    ports:
+      - "2217:2217"
+    env_file:
+      - .env
+    environment:
+      - CACHING_SERVICE_URL=https://prehaproxy.xtrim.tv:2001/sec-session-identity-api/v1
+      - WHATSAPP_NUMBER=593968600400
+      - WHATSAPP_MESSAGE_TEMPLATE=Hola quiero más información
+      - PORT=2217
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:2217/market-ads-attribution-api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
